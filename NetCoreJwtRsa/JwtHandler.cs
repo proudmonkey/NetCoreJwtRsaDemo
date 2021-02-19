@@ -96,7 +96,12 @@ namespace NetCoreJwtRsa
                 ValidateIssuerSigningKey = true,
                 ValidIssuer = _settings.Issuer,
                 ValidAudience = _settings.Audience,
-                IssuerSigningKey = new RsaSecurityKey(rsa)
+                IssuerSigningKey = new RsaSecurityKey(rsa),
+
+                CryptoProviderFactory = new CryptoProviderFactory()
+                {
+                    CacheSignatureProviders = false
+                }
             };
 
             try
